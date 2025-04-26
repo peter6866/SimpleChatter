@@ -1,0 +1,14 @@
+Name: user
+Host: 0.0.0.0
+Port: 8888
+Mode: dev
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 192.168.1.106:3379
+    Key: user.rpc
+
+JwtAuth:
+  AccessSecret: peter6866
+  AccessExpire: 8640000

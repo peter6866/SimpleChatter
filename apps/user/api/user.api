@@ -1,0 +1,39 @@
+syntax = "v1"
+
+info (
+	title:  "User service object"
+	author: "peter6866"
+)
+
+import (
+	"domain.api"
+)
+
+// -------------- user api v1 --------------
+// no need login
+@server (
+	prefix: v1/user
+	group:  user
+)
+service user {
+	@doc "User Register"
+	@handler register
+	post /register (RegisterReq) returns (RegisterResp)
+
+	@doc "User Login"
+	@handler login
+	post /login (LoginReq) returns (LoginResp)
+}
+
+//need login
+@server (
+	prefix: v1/user
+	group:  user
+	jwt:    JwtAuth
+)
+service user {
+	@doc "Get User info"
+	@handler detail
+	get /user (UserInfoReq) returns (UserInfoResp)
+}
+

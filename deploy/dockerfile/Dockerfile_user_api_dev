@@ -1,0 +1,29 @@
+FROM alpine:3.18
+
+# Set the timezone to Chicago
+RUN echo -e "https://dl-cdn.alpinelinux.org/alpine/v3.18/main\nhttps://dl-cdn.alpinelinux.org/alpine/v3.18/community" > /etc/apk/repositories && \
+    apk update && \
+    apk --no-cache add tzdata && \
+    cp /usr/share/zoneinfo/America/Chicago /etc/localtime && \
+    echo "America/Chicago" > /etc/timezone
+
+ENV TZ=America/Chicago
+
+ARG SERVER_NAME=user
+ARG SERVER_TYPE=api
+
+ENV RUN_BIN=bin/${SERVER_NAME}-${SERVER_TYPE}
+ENV RUN_CONF=/${SERVER_NAME}/conf/${SERVER_NAME}.yaml
+
+RUN mkdir /$SERVER_NAME && mkdir /$SERVER_NAME/bin && mkdir /$SERVER_NAME/conf
+
+COPY ./bin/$SERVER_NAME-$SERVER_TYPE /$SERVER_NAME/bin/
+
+COPY ./apps/$SERVER_NAME/$SERVER_TYPE/etc/dev/$SERVER_NAME.yaml /$SERVER_NAME/conf/
+
+RUN chmod +x /$SERVER_NAME/bin/$SERVER_NAME-$SERVER_TYPE
+
+WORKDIR /$SERVER_NAME
+
+ENTRYPOINT $RUN_BIN -f $RUN_CONF
+
