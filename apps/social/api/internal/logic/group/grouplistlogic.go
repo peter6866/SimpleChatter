@@ -18,7 +18,7 @@ type GroupListLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 用户申群列表
+// user group list
 func NewGroupListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GroupListLogic {
 	return &GroupListLogic{
 		Logger: logx.WithContext(ctx),

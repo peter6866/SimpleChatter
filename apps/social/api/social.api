@@ -180,11 +180,11 @@ service social {
 	@handler groupPutInHandle
 	put /group/putIn (GroupPutInHandleRep) returns (GroupPutInHandleResp)
 
-	@doc "申请进群列表"
+	@doc "apply to join group list"
 	@handler groupPutInList
 	get /group/putIns (GroupPutInListRep) returns (GroupPutInListResp)
 
-	@doc "用户申群列表"
+	@doc "user group list"
 	@handler groupList
 	get /groups (GroupListRep) returns (GroupListResp)
 

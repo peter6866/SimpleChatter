@@ -36,7 +36,6 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(in *user.LoginReq) (*user.LoginResp, error) {
-	// todo: add your logic here and delete this line
 	// Check if the user already exists
 	userEntity, err := l.svcCtx.UsersModel.FindByPhone(l.ctx, in.Phone)
 	if err != nil {

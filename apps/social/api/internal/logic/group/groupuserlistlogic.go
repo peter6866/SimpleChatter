@@ -35,13 +35,13 @@ func (l *GroupUserListLogic) GroupUserList(req *types.GroupUserListReq) (resp *t
 		return nil, err
 	}
 
-	// 还需要获取用户的信息
+	// need to get user info
 	uids := make([]string, 0, len(groupUsers.List))
 	for _, v := range groupUsers.List {
 		uids = append(uids, v.UserId)
 	}
 
-	// 获取用户信息
+	// get user info
 	userList, err := l.svcCtx.User.FindUser(l.ctx, &userclient.FindUserReq{Ids: uids})
 	if err != nil {
 		return nil, err

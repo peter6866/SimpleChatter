@@ -29,7 +29,7 @@ func NewCreateGroupLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Creat
 func (l *CreateGroupLogic) CreateGroup(req *types.GroupCreateReq) (resp *types.GroupCreateResp, err error) {
 	uid := ctxdata.GetUId(l.ctx)
 
-	// 创建群
+	// create group
 	_, err = l.svcCtx.Social.GroupCreate(l.ctx, &socialclient.GroupCreateReq{
 		Name:       req.Name,
 		Icon:       req.Icon,

@@ -41,13 +41,13 @@ func (l *FriendListLogic) FriendList(req *types.FriendListReq) (resp *types.Frie
 		return &types.FriendListResp{}, nil
 	}
 
-	// 根据好友id获取好友信息
+	// get friend info by friend id
 	uids := make([]string, 0, len(friends.List))
 	for _, i := range friends.List {
 		uids = append(uids, i.FriendUid)
 	}
 
-	// 根据uids查询用户信息
+	// get user info by uids
 	users, err := l.svcCtx.User.FindUser(l.ctx, &userclient.FindUserReq{
 		Ids: uids,
 	})

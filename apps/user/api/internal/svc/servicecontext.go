@@ -2,7 +2,7 @@ package svc
 
 import (
 	"github.com/peter6866/SimpleChatter/apps/user/api/internal/config"
-	userclient "github.com/peter6866/SimpleChatter/apps/user/rpc/userClient"
+	userclient "github.com/peter6866/SimpleChatter/apps/user/rpc/userclient"
 	"github.com/zeromicro/go-zero/zrpc"
 )
 

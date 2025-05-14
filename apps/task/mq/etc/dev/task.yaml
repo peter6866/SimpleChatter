@@ -1,0 +1,23 @@
+Name: task.mq
+ListenOn: 0.0.0.0:10091
+
+MsgChatTransfer:
+  Name: MsgChatTransfer
+  Brokers:
+    - 192.168.1.106:9092
+  Group: kafka
+  Topic: msgChatTransfer
+  Offset: first
+  Consumers: 1
+
+Redisx:
+  Host: 192.168.1.106:16379
+  Type: node
+  Pass: simplechatter
+
+Mongo:
+  Url: 'mongodb://root:simplechatter@192.168.1.106:47017'
+  Db: simplechatter
+
+Ws:
+  Host: 127.0.0.1:10090

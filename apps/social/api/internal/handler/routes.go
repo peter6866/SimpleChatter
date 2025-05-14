@@ -66,7 +66,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: group.GroupPutInHandleHandler(serverCtx),
 			},
 			{
-				// 申请进群列表
+				// apply to join group list
 				Method:  http.MethodGet,
 				Path:    "/group/putIns",
 				Handler: group.GroupPutInListHandler(serverCtx),
@@ -78,7 +78,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: group.GroupUserListHandler(serverCtx),
 			},
 			{
-				// 用户申群列表
+				// user group list
 				Method:  http.MethodGet,
 				Path:    "/groups",
 				Handler: group.GroupListHandler(serverCtx),

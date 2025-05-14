@@ -17,7 +17,7 @@ type GroupPutInListLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 申请进群列表
+// apply to join group list
 func NewGroupPutInListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GroupPutInListLogic {
 	return &GroupPutInListLogic{
 		Logger: logx.WithContext(ctx),

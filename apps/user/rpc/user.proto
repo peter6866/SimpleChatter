@@ -6,11 +6,11 @@ option go_package = "./user";
 
 // model
 message UserEntity {
-  string  id = 1;                // 用户id
-  string  avatar = 2;            // 用户头像
-  string  nickname = 3;          // 昵称
-  string  phone  = 4;            // 手机号码
-  int32   status  = 5;           // 是否锁住
+  string  id = 1;                // User ID
+  string  avatar = 2;            // User avatar
+  string  nickname = 3;          // Nickname
+  string  phone  = 4;            // Phone number
+  int32   status  = 5;           // Account lock status
   int32   sex = 6;
 }
 

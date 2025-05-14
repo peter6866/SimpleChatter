@@ -27,7 +27,7 @@ type Friends struct {
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
 	Remark        string                 `protobuf:"bytes,3,opt,name=remark,proto3" json:"remark,omitempty"`
-	AddSource     int32                  `protobuf:"varint,4,opt,name=addSource,proto3" json:"addSource,omitempty"` // 添加来源
+	AddSource     int32                  `protobuf:"varint,4,opt,name=addSource,proto3" json:"addSource,omitempty"` // Add source
 	FriendUid     string                 `protobuf:"bytes,5,opt,name=friendUid,proto3" json:"friendUid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -105,7 +105,7 @@ type FriendRequests struct {
 	ReqUid        string                 `protobuf:"bytes,3,opt,name=reqUid,proto3" json:"reqUid,omitempty"`
 	ReqMsg        string                 `protobuf:"bytes,4,opt,name=reqMsg,proto3" json:"reqMsg,omitempty"`
 	ReqTime       int64                  `protobuf:"varint,5,opt,name=reqTime,proto3" json:"reqTime,omitempty"`
-	HandleResult  int32                  `protobuf:"varint,6,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // 处理结果
+	HandleResult  int32                  `protobuf:"varint,6,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // Handle result
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -191,7 +191,7 @@ type Groups struct {
 	CreatorUid      string                 `protobuf:"bytes,5,opt,name=creator_uid,json=creatorUid,proto3" json:"creator_uid,omitempty"`
 	GroupType       int32                  `protobuf:"varint,6,opt,name=groupType,proto3" json:"groupType,omitempty"`
 	IsVerify        bool                   `protobuf:"varint,7,opt,name=isVerify,proto3" json:"isVerify,omitempty"`
-	Notification    string                 `protobuf:"bytes,8,opt,name=notification,proto3" json:"notification,omitempty"` // 公告通知
+	Notification    string                 `protobuf:"bytes,8,opt,name=notification,proto3" json:"notification,omitempty"` // Announcement notification
 	NotificationUid string                 `protobuf:"bytes,9,opt,name=notificationUid,proto3" json:"notificationUid,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -400,7 +400,7 @@ type GroupRequests struct {
 	JoinSource    int32                  `protobuf:"varint,6,opt,name=joinSource,proto3" json:"joinSource,omitempty"`
 	InviterUid    string                 `protobuf:"bytes,7,opt,name=inviterUid,proto3" json:"inviterUid,omitempty"`
 	HandleUid     string                 `protobuf:"bytes,8,opt,name=handleUid,proto3" json:"handleUid,omitempty"`
-	HandleResult  int32                  `protobuf:"varint,9,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // 处理结果
+	HandleResult  int32                  `protobuf:"varint,9,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // Handle result
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -606,7 +606,7 @@ type FriendPutInHandleReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FriendReqId   int32                  `protobuf:"varint,1,opt,name=friendReqId,proto3" json:"friendReqId,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
-	HandleResult  int32                  `protobuf:"varint,3,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // 处理结果
+	HandleResult  int32                  `protobuf:"varint,3,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // Handle result
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1208,7 +1208,7 @@ type GroupPutInHandleReq struct {
 	GroupReqId    int32                  `protobuf:"varint,1,opt,name=groupReqId,proto3" json:"groupReqId,omitempty"`
 	GroupId       string                 `protobuf:"bytes,2,opt,name=groupId,proto3" json:"groupId,omitempty"`
 	HandleUid     string                 `protobuf:"bytes,3,opt,name=handleUid,proto3" json:"handleUid,omitempty"`
-	HandleResult  int32                  `protobuf:"varint,4,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // 处理结果
+	HandleResult  int32                  `protobuf:"varint,4,opt,name=handleResult,proto3" json:"handleResult,omitempty"` // Handle result
 	Username      string                 `protobuf:"bytes,6,opt,name=username,proto3" json:"username,omitempty"`
 	UserAvatarUrl string                 `protobuf:"bytes,7,opt,name=userAvatarUrl,proto3" json:"userAvatarUrl,omitempty"`
 	unknownFields protoimpl.UnknownFields

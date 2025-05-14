@@ -35,7 +35,6 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(in *user.RegisterReq) (*user.RegisterResp, error) {
-	// todo: add your logic here and delete this line
 
 	// Check if the user already exists
 	userEntity, err := l.svcCtx.UsersModel.FindByPhone(l.ctx, in.Phone)

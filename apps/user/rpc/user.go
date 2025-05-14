@@ -26,6 +26,10 @@ func main() {
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)
 
+	if err := ctx.SetRootToken(); err != nil {
+		panic(err)
+	}
+
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
 		user.RegisterUserServer(grpcServer, server.NewUserServer(ctx))
 
@@ -33,7 +37,6 @@ func main() {
 			reflection.Register(grpcServer)
 		}
 	})
-
 	s.AddUnaryInterceptors(rpcserver.LogInterceptor)
 	defer s.Stop()
 
