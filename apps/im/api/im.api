@@ -55,6 +55,13 @@ type (
 		ChatType int32  `json:"ChatType,omitempty"`
 	}
 	setUpUserConversationResp  {}
+	GetChatLogReadRecordsReq {
+		MsgId string `json:"msgId"`
+	}
+	GetChatLogReadRecordsResp {
+		Reads   []string `json:"reads"`
+		UnReads []string `json:"unReads"`
+	}
 )
 
 @server (
@@ -77,5 +84,9 @@ service im {
 	@doc "Update conversation"
 	@handler putConversations
 	put /conversation (PutConversationsReq) returns (PutConversationsResp)
+
+	@doc "Get chat log read records"
+	@handler getChatLogReadRecords
+	get /chatlog/readRecords (GetChatLogReadRecordsReq) returns (GetChatLogReadRecordsResp)
 }
 

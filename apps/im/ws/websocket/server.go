@@ -11,6 +11,7 @@ import (
 
 	"github.com/gorilla/websocket"
 	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/threading"
 )
 
 // AckType represents the acknowledgment type for message handling
@@ -41,6 +42,8 @@ func (t AckType) ToString() string {
 // It manages WebSocket connections, message routing, and user authentication
 type Server struct {
 	sync.RWMutex
+
+	*threading.TaskRunner
 
 	opt            *serverOption
 	authentication Authentication
@@ -78,7 +81,8 @@ func NewServer(addr string, opts ...ServerOptions) *Server {
 		connToUser: make(map[*Conn]string),
 		userToConn: make(map[string]*Conn),
 
-		Logger: logx.WithContext(context.Background()),
+		Logger:     logx.WithContext(context.Background()),
+		TaskRunner: threading.NewTaskRunner(opt.concurrency),
 	}
 }
 

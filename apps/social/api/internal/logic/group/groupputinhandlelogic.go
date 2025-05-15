@@ -3,6 +3,7 @@ package group
 import (
 	"context"
 
+	"github.com/peter6866/SimpleChatter/apps/im/rpc/imclient"
 	"github.com/peter6866/SimpleChatter/apps/social/api/internal/svc"
 	"github.com/peter6866/SimpleChatter/apps/social/api/internal/types"
 	"github.com/peter6866/SimpleChatter/apps/social/rpc/socialclient"
@@ -28,10 +29,11 @@ func NewGroupPutInHandleLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *GroupPutInHandleLogic) GroupPutInHandle(req *types.GroupPutInHandleRep) (resp *types.GroupPutInHandleResp, err error) {
-	_, err = l.svcCtx.GroupPutInHandle(l.ctx, &socialclient.GroupPutInHandleReq{
+	uid := ctxdata.GetUId(l.ctx)
+	res, err := l.svcCtx.Social.GroupPutInHandle(l.ctx, &socialclient.GroupPutInHandleReq{
 		GroupReqId:   req.GroupReqId,
 		GroupId:      req.GroupId,
-		HandleUid:    ctxdata.GetUId(l.ctx),
+		HandleUid:    uid,
 		HandleResult: req.HandleResult,
 	})
 
@@ -39,7 +41,15 @@ func (l *GroupPutInHandleLogic) GroupPutInHandle(req *types.GroupPutInHandleRep)
 		return
 	}
 
-	// TODO:
+	if res.GroupId == "" {
+		return nil, err
+	}
 
-	return
+	_, err = l.svcCtx.Im.SetUpUserConversation(l.ctx, &imclient.SetUpUserConversationReq{
+		SendId:   uid,
+		RecvId:   res.GroupId,
+		ChatType: int32(constants.GroupChatType),
+	})
+
+	return nil, err
 }

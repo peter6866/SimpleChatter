@@ -1,3 +1,4 @@
+// Package svc is the service context for the task mq.
 package svc
 
 import (
@@ -5,9 +6,11 @@ import (
 
 	"github.com/peter6866/SimpleChatter/apps/im/immodels"
 	"github.com/peter6866/SimpleChatter/apps/im/ws/websocket"
+	"github.com/peter6866/SimpleChatter/apps/social/rpc/socialclient"
 	"github.com/peter6866/SimpleChatter/apps/task/mq/internal/config"
 	"github.com/peter6866/SimpleChatter/pkg/constants"
 	"github.com/zeromicro/go-zero/core/stores/redis"
+	"github.com/zeromicro/go-zero/zrpc"
 )
 
 type ServiceContext struct {
@@ -16,6 +19,7 @@ type ServiceContext struct {
 	WsClient websocket.Client
 	*redis.Redis
 
+	socialclient.Social
 	immodels.ChatLogModel
 	immodels.ConversationModel
 }
@@ -26,6 +30,8 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Redis:             redis.MustNewRedis(c.Redisx),
 		ChatLogModel:      immodels.MustChatLogModel(c.Mongo.Url, c.Mongo.Db),
 		ConversationModel: immodels.MustConversationModel(c.Mongo.Url, c.Mongo.Db),
+
+		Social: socialclient.NewSocial(zrpc.MustNewClient(c.SocialRpc)),
 	}
 
 	token, err := svc.GetSystemToken()

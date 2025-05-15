@@ -1,6 +1,7 @@
 package svc
 
 import (
+	"github.com/peter6866/SimpleChatter/apps/im/rpc/imclient"
 	"github.com/peter6866/SimpleChatter/apps/social/api/internal/config"
 	"github.com/peter6866/SimpleChatter/apps/social/rpc/socialclient"
 	"github.com/peter6866/SimpleChatter/apps/user/rpc/userclient"
@@ -12,6 +13,7 @@ type ServiceContext struct {
 
 	userclient.User
 	socialclient.Social
+	imclient.Im
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -19,5 +21,6 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Config: c,
 		User:   userclient.NewUser(zrpc.MustNewClient(c.UserRpc)),
 		Social: socialclient.NewSocial(zrpc.MustNewClient(c.SocialRpc)),
+		Im:     imclient.NewIm(zrpc.MustNewClient(c.ImRpc)),
 	}
 }
