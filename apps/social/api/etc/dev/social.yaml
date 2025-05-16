@@ -2,6 +2,10 @@ Name: social
 Host: 0.0.0.0
 Port: 8881
 
+Redisx:
+  Host: 192.168.1.106:16379
+  Pass: simplechatter
+
 SocialRpc:
   Etcd:
     Hosts:

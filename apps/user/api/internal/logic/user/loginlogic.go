@@ -7,6 +7,7 @@ import (
 	"github.com/peter6866/SimpleChatter/apps/user/api/internal/svc"
 	"github.com/peter6866/SimpleChatter/apps/user/api/internal/types"
 	"github.com/peter6866/SimpleChatter/apps/user/rpc/user"
+	"github.com/peter6866/SimpleChatter/pkg/constants"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -38,6 +39,8 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 
 	var res types.LoginResp
 	copier.Copy(&res, loginResp)
+
+	l.svcCtx.Redis.HsetCtx(l.ctx, constants.REDIS_ONLINE_USER, loginResp.Id, "1")
 
 	return &res, nil
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/peter6866/SimpleChatter/apps/social/api/internal/svc"
 	"github.com/peter6866/SimpleChatter/apps/social/api/internal/types"
 	"github.com/peter6866/SimpleChatter/apps/social/rpc/socialclient"
-	"github.com/peter6866/SimpleChatter/apps/user/rpc/userclient"
+	"github.com/peter6866/SimpleChatter/apps/user/rpc/userClient"
 	"github.com/peter6866/SimpleChatter/pkg/ctxdata"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -48,13 +48,13 @@ func (l *FriendListLogic) FriendList(req *types.FriendListReq) (resp *types.Frie
 	}
 
 	// get user info by uids
-	users, err := l.svcCtx.User.FindUser(l.ctx, &userclient.FindUserReq{
+	users, err := l.svcCtx.User.FindUser(l.ctx, &userClient.FindUserReq{
 		Ids: uids,
 	})
 	if err != nil {
 		return &types.FriendListResp{}, nil
 	}
-	userRecords := make(map[string]*userclient.UserEntity, len(users.User))
+	userRecords := make(map[string]*userClient.UserEntity, len(users.User))
 	for i := range users.User {
 		userRecords[users.User[i].Id] = users.User[i]
 	}

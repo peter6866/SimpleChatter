@@ -139,6 +139,22 @@ type (
 	}
 )
 
+type (
+	FriendsOnlineReq  {}
+	FriendsOnlineResp {
+		OnlineList map[string]bool `json:"onLineList"`
+	}
+)
+
+type (
+	GroupUserOnlineReq {
+		GroupId string `json:"group_id,omitempty"`
+	}
+	GroupUserOnlineResp {
+		OnlineList map[string]bool `json:"onLineList"`
+	}
+)
+
 @server (
 	prefix: v1/social
 	group:  friend
@@ -160,6 +176,10 @@ service social {
 	@doc "Friend list"
 	@handler friendList
 	get /friends (FriendListReq) returns (FriendListResp)
+
+	@doc "friends online"
+	@handler friendsOnline
+	get /friends/online (FriendsOnlineReq) returns (FriendsOnlineResp)
 }
 
 @server (
@@ -191,5 +211,9 @@ service social {
 	@doc "group user list"
 	@handler groupUserList
 	get /group/users (GroupUserListReq) returns (GroupUserListResp)
+
+	@doc "group user online"
+	@handler groupUserOnline
+	get /group/users/online (GroupUserOnlineReq) returns (GroupUserOnlineResp)
 }
 

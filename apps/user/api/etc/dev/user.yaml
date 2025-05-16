@@ -3,6 +3,10 @@ Host: 0.0.0.0
 Port: 8888
 Mode: dev
 
+Redisx:
+  Host: 192.168.1.106:16379
+  Pass: simplechatter
+
 UserRpc:
   Etcd:
     Hosts:

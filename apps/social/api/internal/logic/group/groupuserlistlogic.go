@@ -6,7 +6,7 @@ import (
 	"github.com/peter6866/SimpleChatter/apps/social/api/internal/svc"
 	"github.com/peter6866/SimpleChatter/apps/social/api/internal/types"
 	"github.com/peter6866/SimpleChatter/apps/social/rpc/socialclient"
-	"github.com/peter6866/SimpleChatter/apps/user/rpc/userclient"
+	"github.com/peter6866/SimpleChatter/apps/user/rpc/userClient"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -42,12 +42,12 @@ func (l *GroupUserListLogic) GroupUserList(req *types.GroupUserListReq) (resp *t
 	}
 
 	// get user info
-	userList, err := l.svcCtx.User.FindUser(l.ctx, &userclient.FindUserReq{Ids: uids})
+	userList, err := l.svcCtx.User.FindUser(l.ctx, &userClient.FindUserReq{Ids: uids})
 	if err != nil {
 		return nil, err
 	}
 
-	userRecords := make(map[string]*userclient.UserEntity, len(userList.User))
+	userRecords := make(map[string]*userClient.UserEntity, len(userList.User))
 	for i := range userList.User {
 		userRecords[userList.User[i].Id] = userList.User[i]
 	}
